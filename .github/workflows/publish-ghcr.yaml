@@ -13,6 +13,6 @@ jobs:
             - uses: actions/checkout@v3
             - name: Build and Push The Image
                 run: |
-                    docker login --username "$USERNAME" --password {{ secrets.GH_PATH }} ghrc.io
+                    docker login --username "$USERNAME" --password ${{ secrets.GH_PATH }} ghrc.io
                     docker build . --tag ghrc.io/$USERNAME/$PROJECT:latest
                     docker push ghrc.io/$USERNAME/$PROJECT:latest 
