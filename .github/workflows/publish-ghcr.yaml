@@ -10,7 +10,7 @@ jobs:
           USERNAME: JoaoNeto4
           PROJECT: base-image
         steps:
-            - uses: actions/checkuot@v3
+            - uses: actions/checkout@v3
             - name: Build and Push The Image
                 run: |
                     docker login --username "$USERNAME" --password {{ secrets.GH_PATH }} ghrc.io
