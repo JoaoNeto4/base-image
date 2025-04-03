@@ -1,0 +1,18 @@
+name: Docker base image
+
+on: 
+    push
+
+jobs:
+    build_and_publish:
+        runs-on: ubuntu-latest
+        env:
+          USERNAME: JoaoNeto4
+          PROJECT: base-image
+        steps:
+            - uses: actions/checkuot@v3
+            - name: Build and Push The Image
+                run: |
+                    docker login --username "$USERNAME" --password {{ secrets.GH_PATH }} ghrc.io
+                    docker build . --tag ghrc.io/$USERNAME/$PROJECT:latest
+                    docker push ghrc.io/$USERNAME/$PROJECT:latest 
