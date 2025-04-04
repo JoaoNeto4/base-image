@@ -31,7 +31,7 @@ ADD odoo.conf /etc/odoo/odoo.conf
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN mkdir /var/log/odo /var/lib/odoo \
+RUN mkdir /var/log/odoo /var/lib/odoo \
     && chown odoo:odoo /var/log/odoo /etc/odoo/odoo.conf /var/lib/odoo \
     && chmod 640 /etc/odoo/odoo.conf \
     && chmod +x /entrypoint.sh
