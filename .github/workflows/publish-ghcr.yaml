@@ -15,4 +15,4 @@ jobs:
               run: |
                   echo "${{ secrets.GH_PATH }}" | docker login ghcr.io --username "$USERNAME" --password-stdin
                   docker build . --tag ghcr.io/$USERNAME/$PROJECT:latest
-                  docker push ghrc.io/$USERNAME/$PROJECT:latest
+                  docker push ghcr.io/$USERNAME/$PROJECT:latest
