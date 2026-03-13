@@ -11,8 +11,12 @@ jobs:
           PROJECT: base-image
         steps:
             - uses: actions/checkout@v3
-            - name: Build and Push The Image
-              run: |
-                  echo "${{ secrets.GH_PATH }}" | docker login ghcr.io --username "$USERNAME" --password-stdin
-                  docker build . --tag ghcr.io/$USERNAME/$PROJECT:latest
-                  docker push ghcr.io/$USERNAME/$PROJECT:latest
+            
+            - name: Set up QEMU
+              uses: docker/setup-qemu-action@v3
+              
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+            
+            - name: Login to GitHub Container Registry
+              run: echo "${{ secrets.GH_PATH }}" | docker login ghcr.io --username "$USERNAME" --password-stdin
