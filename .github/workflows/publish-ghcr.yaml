@@ -32,4 +32,4 @@ jobs:
           context: .
           platforms: linux/amd64  # <--- Definido como Intel
           push: true
-          tags: ghcr.io/${{ github.actor }}/base-image:latest
+          tags: ghcr.io/joaoneto4/base-image:latest
