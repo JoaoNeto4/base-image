@@ -1,28 +1,18 @@
 name: Docker base image
 
-on:
-  push:
+on: 
+    push
 
 jobs:
-  build_and_publish:
-    runs-on: ubuntu-latest
-
-    permissions:
-      packages: write
-      contents: read
-
-    env:
-      USERNAME: joaoneto4
-      PROJECT: base-image
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $USERNAME --password-stdin
-
-      - name: Build image
-        run: docker build . --tag ghcr.io/$USERNAME/$PROJECT:latest
-
-      - name: Push image
-        run: docker push ghcr.io/$USERNAME/$PROJECT:latest
+    build_and_publish:
+        runs-on: ubuntu-latest
+        env:
+          USERNAME: joaoneto4
+          PROJECT: base-image
+        steps:
+            - uses: actions/checkout@v3
+            - name: Build and Push The Image
+              run: |
+                  echo "${{ secrets.GH_PATH }}" | docker login ghcr.io --username "$USERNAME" --password-stdin
+                  docker build . --tag ghcr.io/$USERNAME/$PROJECT:latest
+                  docker push ghcr.io/$USERNAME/$PROJECT:latest
