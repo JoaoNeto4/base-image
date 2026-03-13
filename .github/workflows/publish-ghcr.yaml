@@ -1,10 +1,7 @@
 name: Docker base image
 
-on: 
+on:
   push
-
-permissions:
-  packages: write
 
 jobs:
   build_and_publish:
@@ -13,11 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Login to GHCR
-        run: echo "${{ secrets.GH_PATH }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Login GHCR
+        run: echo "${{ secrets.GH_PATH }}" | docker login ghcr.io -u joaoneto4 --password-stdin
 
       - name: Build
-        run: docker build . -t ghcr.io/${{ github.repository_owner }}/base-image:latest
+        run: docker build . -t ghcr.io/joaoneto4/base-image:latest
 
       - name: Push
-        run: docker push ghcr.io/${{ github.repository_owner }}/base-image:latest
+        run: docker push ghcr.io/joaoneto4/base-image:latest
